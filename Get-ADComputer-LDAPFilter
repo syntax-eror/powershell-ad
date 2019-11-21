@@ -1,12 +1,12 @@
 <#
 .SYNOPSIS
-ReadHost-GetADComputerLDAPFilter takes part of an AD computer name and then displays a list of all computers in AD matching that name, sorted by Last Logon Date.
+GetADComputerLDAPFilter takes part of an AD computer name and then displays a list of all computers in AD matching that name, sorted by Last Logon Date.
 .DESCRIPTION
 This script takes input, filters it through LDAPFilter to match any part of the name, then sorts
 .PARAMETER ADLookupName
 The name to query
 .EXAMPLE
-Get-ADComputerLDAPFilter AVA
+Get-ADComputerLDAPFilter ACCT
 #>
 <#[CmdletBinding()]
 param (
