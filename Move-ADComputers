@@ -1,0 +1,36 @@
+<#
+.SYNOPSIS
+Move-ADComputers takes a computer name as an input then provides a list of OUs to move it to.
+
+.DESCRIPTION
+Prompts for full name of a computer, then moves to a specific OU chosen based on the list provided. WARNING: confirmation is turned off,
+so if the option is selected, it will move the computers without prompting.
+
+#>
+
+
+$PCName = Read-Host "Type FULL computer name of Home Office machine"
+#To do - add error checking to verify PC name exists before continuing script
+#Use LDAPFilter to allow providing partial PC names and selecting a range
+$OUList = "AC", "EX", "HR", "IT", "LG", "MK", "SA"
+Write-Host "Available OUs:" $OUList
+Write-Host "`nAC = Accounting`nEX = Executive`nHR = Human Resources`nIT = IT Support`nLG = Legal`nMK = Marketing`nSA = Sales`nSH = Shipping`n"
+Switch (Read-Host "Type name of OU from list above")
+{
+    AC {$OU = "OU=Accounting,OU=PCs,DC=DOMAINNAME,DC=local"}
+    EX {$OU = "OU=Executive-PCs,OU=PCs,DC=DOMAINNAME,DC=local"}
+    HR {$OU = "OU=HR-PCs,OU=PCs,DC=DOMAINNAME,DC=local"}
+    IT {$OU = "OU=IT Support Computers,OU=PCs,DC=DOMAINNAME,DC=local"}
+    LG {$OU = "OU=Legal-PCs,OU=PCs,DC=DOMAINNAME,DC=local"}
+    MK {$OU = "OU=Marketing-PCs,OU=PCs,DC=DOMAINNAME,DC=local"}
+    SA {$OU = "OU=Sales-PCs,OU=PCs,DC=DOMAINNAME,DC=local"}
+    
+    Default {
+             Write-Host "OU Not Found, check spelling and try again" -ForegroundColor Red
+             #Start-Sleep -S 2
+             #Clear-Host
+             Exit
+            }
+}
+Get-ADComputer $PCName | Move-ADObject -TargetPath $OU -Confirm:$False
+Write-Host "Moved $PCName to $OU"
