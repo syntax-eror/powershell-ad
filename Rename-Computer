@@ -1,4 +1,4 @@
 #Rename an AD joined computer remotely and force restart with admin credentials
-$PCName = Read-Host "Enter full name of computer to rename:"
-$DomainCreds = Read-Host "Enter admin credentials, including domain (ex. DOMAIN\accountname):"
+$PCName = Read-Host "Enter full name of computer to rename"
+$DomainCreds = Read-Host "Enter admin credentials, including domain (ex. DOMAIN\accountname)"
 Rename-Computer -ComputerName $PCName -Restart -DomainCredential $DomainCreds
