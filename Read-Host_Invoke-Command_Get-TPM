@@ -1,0 +1,2 @@
+$RemoteComputer = Read-Host "Enter full name of computer to get TPM status of:"
+Invoke-Command -ComputerName $RemoteComputer -ScriptBlock {Get-TPM}
