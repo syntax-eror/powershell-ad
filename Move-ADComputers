@@ -8,7 +8,6 @@ so if the option is selected, it will move the computers without prompting.
 
 #>
 
-
 $PCName = Read-Host "Type FULL computer name of Home Office machine"
 #To do - add error checking to verify PC name exists before continuing script
 #Use LDAPFilter to allow providing partial PC names and selecting a range
