@@ -8,12 +8,12 @@ so if the option is selected, it will move the computers without prompting.
 
 #>
 
-$PCName = Read-Host "Type FULL computer name of Home Office machine"
+$PCName = Read-Host "Type FULL computer name of machine"
 #To do - add error checking to verify PC name exists before continuing script
 #Use LDAPFilter to allow providing partial PC names and selecting a range
 $OUList = "AC", "BU", "HR", "IT", "LG", "MK", "SA"
 Write-Host "Available OUs:" $OUList
-Write-Host "`nAC = Accounting`nEX = Executive`nHR = Human Resources`nIT = IT Support`nLG = Legal`nMK = Marketing`nSA = Sales`nSH = Shipping`n"
+Write-Host "`nAC = Accounting`nBU = Business Unit`nHR = Human Resources`nIT = IT Support`nLG = Legal`nMK = Marketing`nSA = Sales`n"
 Switch (Read-Host "Type name of OU from list above")
 {
     AC {$OU = "OU=Accounting,OU=PCs,DC=DOMAINNAME,DC=local"}
