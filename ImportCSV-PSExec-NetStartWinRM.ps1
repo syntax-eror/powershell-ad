@@ -1,3 +1,4 @@
+#need to have column header with ComputerName in properly converted .csv file
 $laptopswinrm = $null
 $csv_path = $null
 $psexec_path = $null
